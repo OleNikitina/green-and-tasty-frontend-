@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output and caches
+dist/
+tmp/
+out-tsc/
+bazel-out/
+.angular/
+coverage/
+.sass-cache/
+
+# Generated production environment
+**/src/environments/environment.production.ts
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.history/

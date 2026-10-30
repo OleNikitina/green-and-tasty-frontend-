@@ -1,0 +1,62 @@
+<article class="card">
+  <header class="card-header">
+    <h2 class="title">{{ title() }}</h2>
+    <div class="header-actions">
+      @if (participant().isSubmitted) {
+        <span class="status-label">Submitted</span>
+      } @else {
+        <span class="status-label">Still choosing</span>
+      }
+      @if (isOwner()) {
+        <button class="header-action" type="button">Edit my Pre-Order</button>
+      } @else {
+        <button class="header-action" type="button">Remove Guest</button>
+      }
+    </div>
+  </header>
+  @if (participant().items.length) {
+    <ul class="items">
+      @for (item of participant().items; track item.dish.id) {
+        <li class="item">
+          <button class="remove-item" type="button" [attr.aria-label]="'Remove ' + item.dish.name">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 7h16M10 11v6M14 11v6M5 7l1 14h12l1-14M9 7V4h6v3" />
+            </svg>
+          </button>
+          @if (item.dish.imageUrl) {
+            <img
+              class="avatar"
+              [src]="item.dish.imageUrl"
+              alt=""
+              width="40"
+              height="40"
+              loading="lazy"
+            />
+          } @else {
+            <span class="avatar initial" aria-hidden="true">{{ item.dish.name.charAt(0) }}</span>
+          }
+          <div class="dish-details">
+            <p class="name">{{ item.dish.name }}</p>
+            @if (item.dish.weight) {
+              <p class="note">{{ item.dish.weight }}</p>
+            }
+          </div>
+          <div class="quantity-control" aria-label="Quantity">
+            <button type="button" aria-label="Decrease quantity" [disabled]="item.quantity <= 1">
+              −
+            </button>
+            <span>{{ item.quantity }}</span>
+            <button type="button" aria-label="Increase quantity">+</button>
+          </div>
+          <p class="price">{{ item.dish.price * item.quantity | currency }}</p>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty">No dishes yet</p>
+  }
+
+  <p class="subtotal">
+    <span>Subtotal</span><span>{{ participant().total | currency }}</span>
+  </p>
+</article>
