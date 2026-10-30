@@ -11,6 +11,8 @@ This document summarizes the completed static Owner Review screen for the Group 
 - Kept cart status visible as text (“Submitted” / “Still choosing”).
 - Added responsive styles for narrow screens. Both component stylesheets use the shared colors through Sass `@use`.
 
+![Cart](./group-pre-order.png)
+
 ## Changed files
 
 | File | Changes |
@@ -27,6 +29,8 @@ This document summarizes the completed static Owner Review screen for the Group 
 - Design: [`homework-design/01-owner-review.png`](./homework-design/01-owner-review.png)
 - Preview data: `GROUP_ORDER_PREVIEW` from `frontend/restaurant-frontend-app/src/app/shared/mocks/group-orders/group-order.preview.ts`
 - The date and time use Angular’s `date` pipe; monetary values use Angular’s `currency` pipe.
+
+![Cart-full](./group-pre-order-fullsize.png)
 
 ## Run locally
 
@@ -52,7 +56,28 @@ npm run test:hw
 npx tsc -p tsconfig.app.json --noEmit
 ```
 
-Both checks passed during implementation; `npm run test:hw` reported 34 successful tests.
+```
+Практичне · картка учасника
+крок 1 · заголовок картки
+  ✅ гість: <h2> «Guest: Olena»
+  ✅ власник: <h2> «Owner: Yevhenii»
+крок 3 · страви і Subtotal
+  ✅ показує назву страви, кількість і ціну × кількість через currency
+  ✅ показує Subtotal учасника
+  ✅ порожній кошик: «No dishes yet»
+  ✅ фото страви має розмір 40×40
+крок 4 · статус кошика текстом
+  ✅ «Still choosing», якщо кошик не підтверджений
+  ✅ «Submitted», якщо підтверджений
+Рівень 1 · верстка сторінки
+  ✅ учасники — список <ul>/<li> з картками
+  ✅ один <main> і один <h1> «Group Pre-Order»
+  ✅ статус кошика видно текстом
+  ✅ шапка: адреса, дата і «4 of 5 guests»
+  ✅ Grand Total — сума з даних, $74.50
+```
+
+Both checks passed during implementation; `npm run test:hw` reported 13 successful tests.
 
 ## Scope note
 
